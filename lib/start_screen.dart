@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
 class StartScreen extends StatelessWidget {
-  const StartScreen({super.key});
+  const StartScreen(this.startQuiz, {super.key});
+
+  final void Function() startQuiz;
+
   @override
   Widget build(BuildContext context) {
     return Center(
         child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        //transparent can be done by opacity
+        //transparent can be done by opacity but performance intensive
         Image.asset(
           'assets/images/quiz-logo.png',
           width: 300,
@@ -30,9 +33,10 @@ class StartScreen extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
+        // const Icon(Icons.quiz_outlined),
 
         OutlinedButton.icon(
-          onPressed: () {},
+          onPressed: startQuiz,
           style: OutlinedButton.styleFrom(
             foregroundColor: Colors.white,
             backgroundColor: const Color.fromARGB(255, 126, 106, 215),
