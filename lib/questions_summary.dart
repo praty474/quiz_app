@@ -7,26 +7,43 @@ class QuestionsSummary extends StatelessWidget {
   final List<Map<String, Object>> summaryData;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: summaryData.map(
-        (data) {
-          return Row(
-            children: [
-              Text(((data['qusestion'] as int) + 1).toString()),
-              Column(
+    return SizedBox(
+      height: 300,
+      child: SingleChildScrollView(
+        child: Column(
+          children: summaryData.map(
+            (data) {
+              return Row(
                 children: [
-                  Text(data['question'] as String),
-                  const SizedBox(
-                    height: 5,
+                  Text(
+                    (data['qusestion_index']).toString(),
+                    style: TextStyle(
+                      color: Colors.amber,
+                    ),
                   ),
-                  Text(data['user_answer'] as String),
-                  Text(data['correct_answer'] as String),
+                  Column(
+                    children: [
+                      Text(
+                        data['question'] as String,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(data['correct_answer'] as String,
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 8, 132, 221))),
+                      Text(data['user_answer'] as String,
+                          style: TextStyle(
+                              color: const Color.fromARGB(255, 221, 31, 31))),
+                    ],
+                  ),
                 ],
-              ),
-            ],
-          );
-        },
-      ).toList(),
+              );
+            },
+          ).toList(),
+        ),
+      ),
     );
   }
 }
